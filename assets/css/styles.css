@@ -105,16 +105,27 @@ body {
     background: transparent;
     color: var(--muted-foreground);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    position: relative;
 }
+
+.tab-trigger:focus-visible {
+    outline: 3px solid rgba(20, 184, 166, 0.35);
+    outline-offset: 2px;
+}
+
 
 .tab-trigger:hover {
     color: var(--foreground);
+    background: var(--secondary);
+    transform: translateY(-1px);
 }
 
 .tab-trigger.active {
     background: var(--slate-900);
     color: var(--background);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+    transform: translateY(-1px);
 }
 
 @media (min-width: 768px) {
@@ -184,16 +195,29 @@ body {
     gap: 1.5rem;
     padding: 1.5rem;
     position: relative;
-    transition: box-shadow 0.2s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 }
 
 .plan-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    border-color: #cbd5e1;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,250,252,1) 100%);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+}
+
+.plan-card:focus-within {
+    outline: 3px solid rgba(37, 99, 235, 0.18);
+    outline-offset: 4px;
 }
 
 .plan-card.recommended {
     border-color: var(--amber-400);
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+    box-shadow: 0 10px 22px rgba(245, 158, 11, 0.18);
+}
+
+.plan-card.recommended:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 46px rgba(245, 158, 11, 0.22);
 }
 
 @media (min-width: 1024px) {
@@ -466,46 +490,7 @@ body {
     }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #020617;
-        --foreground: #fafafa;
-        --card: #020617;
-        --card-foreground: #fafafa;
-        --primary: #fafafa;
-        --primary-foreground: #0a0a0a;
-        --secondary: #1e293b;
-        --secondary-foreground: #fafafa;
-        --muted: #1e293b;
-        --muted-foreground: #a1a1aa;
-        --border: #1e293b;
-        --input: #1e293b;
-        --emerald-500: #10b981;
-        --emerald-600: #34d399;
-        --amber-400: #fbbf24;
-        --amber-500: #f59e0b;
-        --purple-600: #a855f7;
-        --slate-600: #64748b;
-        --slate-900: #f8fafc;
-        --slate-950: #ffffff;
-        --red-500: #f87171;
-    }
-
-    body {
-        background: linear-gradient(to bottom, #020617, #0f172a);
-    }
-
-    .tab-trigger.active {
-        background: var(--background);
-        color: var(--foreground);
-    }
-
-    .tab-trigger:hover {
-        color: var(--foreground);
-    }
-
-    .priority-badge {
-        background: var(--muted);
-    }
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }
